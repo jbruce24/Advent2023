@@ -12,7 +12,7 @@ namespace Advent
         public static void Main()
         {
             Day1.Run();
-            Console.WriteLine("Hello");
+            //Console.WriteLine("Hello");
         }
     }
 }

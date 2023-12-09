@@ -12,16 +12,16 @@ namespace Advent
             string line;
             int total = 0;
             int i = 0;
-            Dictionary<int, string> numAsWord = new Dictionary<int, string>();
-            numAsWord.Add(1, "one");
-            numAsWord.Add(2, "two");
-            numAsWord.Add(3, "three");
-            numAsWord.Add(4, "four");
-            numAsWord.Add(5,"five");
-            numAsWord.Add(6,"six");
-            numAsWord.Add(7,"seven");
-            numAsWord.Add(8,"eight");
-            numAsWord.Add(9, "nine");
+            Dictionary<string, string> numAsWord = new Dictionary<string, string>();
+            numAsWord.Add("o1one", "one");
+            numAsWord.Add("t2two", "two");
+            numAsWord.Add("t3three", "three");
+            numAsWord.Add("4four", "four");
+            numAsWord.Add("5five","five");
+            numAsWord.Add("s6six","six");
+            numAsWord.Add("s7seven","seven");
+            numAsWord.Add("e8eight","eight");
+            numAsWord.Add("n9nine", "nine");
             StreamReader sr = new StreamReader("C:\\Users\\Jared\\sourceP\\repos\\AdventOfCode23\\Files\\day1.txt");
             StreamWriter sw = new StreamWriter("C:\\Users\\Jared\\sourceP\\repos\\AdventOfCode23\\Files\\day1Output.txt");
 
@@ -31,10 +31,18 @@ namespace Advent
                 line = sr.ReadLine();
                 while (line != null)
                 {
-                    
                     string lineText = line;
+                    string finalText = lineText;
+                    //------Part2---------------------------
+                    foreach (var num1 in numAsWord)
+                    {
+                        if (lineText.Contains(num1.Value))
+                        {
+                            finalText = finalText.Replace(num1.Value, Convert.ToString(num1.Key));
+                        }
+                    }
                     List<int> nums = new List<int>();
-                    line = new String(line.Where(Char.IsDigit).ToArray());
+                    line = new String(finalText.Where(Char.IsDigit).ToArray());
                     int length = line.Length;
                     foreach (char c in line)
                     {
@@ -48,16 +56,7 @@ namespace Advent
                     int totalNum = Int32.Parse(conNum);
                     total = (totalNum +  total);
 
-                    //------Part2---------------------------
-                    foreach (var num1 in numAsWord)
-                    {
-                        if(lineText.Contains(num1.Value))
-                        {
-                            string finalText = lineText.Replace(num1.Value, Convert.ToString(num1.Key)) + num1.Value;
-                        }
-                    }
-
-                    sw.Write("Row = " + i + " Total = " + total + "\n");
+                    sw.Write("Row = " + i + " Line Input = " + finalText + " ConNum = " +  conNum + " Total = " + total + "\n");
                     Console.WriteLine(total);
                     line = sr.ReadLine();
                     i++;

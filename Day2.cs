@@ -19,6 +19,12 @@ namespace Advent
             const int red = 12;
             const int green = 13;
             const int blue = 14;
+            int redMin = 0;
+            int greenMin = 0;
+            int blueMin = 0;
+            int redVal = 0;
+            int greenVal = 0;
+            int blueVal = 0;
             string[] colorArray = null;
             string[] numArray = null;
             while (line != null)
@@ -34,6 +40,40 @@ namespace Advent
                     for (int j = 0; j < colorArray.Length; j++)
                     {
                         numArray = colorArray[j].Split(" ");
+
+                        if (numArray[2]=="green"  && greenMin == 0)
+                        {
+                            if(Convert.ToInt32(numArray[1]) <= greenMin))
+                            {
+                            greenMin = Convert.ToInt32(numArray[1]);
+                            }   
+                        }
+
+                        else if(numArray[2] == "green" && Convert.ToInt32(numArray[1]) == 0)
+                        {
+                            greenMin = Convert.ToInt32(numArray[1]);
+                        }
+
+                        if (numArray[2] == "red" &&  redMin == 0)
+                        {
+                            if(Convert.ToInt32(numArray[1]) <= redMin))
+                            redMin = Convert.ToInt32(numArray[1]);
+                        }
+                        else if (numArray[2] == "red" && Convert.ToInt32(numArray[1]) == 0)
+                        {
+                            redMin = Convert.ToInt32(numArray[1]);
+                        }
+
+                        if (numArray[2] == "blue" && blueMin == 0)
+                        {
+                            if(Convert.ToInt32(numArray[1]) <= blueMin))
+                            blueMin = Convert.ToInt32(numArray[1]);
+                        }
+                        else if (numArray[2] == "blue" && Convert.ToInt32(numArray[1]) == 0)
+                        {
+                            blueMin = Convert.ToInt32(numArray[1]);
+                        }
+
                         if ((numArray[2] == "red" && Convert.ToInt32(numArray[1]) <= red) || (numArray[2] == "green" && Convert.ToInt32(numArray[1]) <= green) || (numArray[2] == "blue" && Convert.ToInt32(numArray[1]) <= blue))
                         {
                             Over = false;
